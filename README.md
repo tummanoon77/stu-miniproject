@@ -1,0 +1,2 @@
+# stu-miniproject
+nosql
