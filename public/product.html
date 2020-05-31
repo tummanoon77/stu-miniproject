@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="productInfo">
+
+    </div>
+<form action="/api/form/" method="POST" name="form">
+    <label>Quantity</label>
+    <input type="text" name="quantity" id="quantity">
+    <label>Name</label>
+    <input type="text" name="name" id="name">
+    <label>Email</label>
+    <input type="text" name="email" id="email">
+    <input type="text" name="productId" id="productId">
+    <input onclick="window.location.href = 'http://localhost:3000';" type="submit">
+    
+</form>
+    
+
+
+    <script>
+         
+    const splitUrl = window.location.href.split("/");
+    
+        const productId = splitUrl[4];
+        $("#productId").val(productId);
+    $.ajax({
+        method: "GET",
+        url: "/api/getProduct" + productId
+    }).then(results =>{
+       let name = $("<p>");
+        name.text(results[0].name);
+        description.text(results[0].description);
+        let price = $("<p>");
+        price.text(results[0].name);
+        description.text(results[0].description);
+        let inventory =$("<p>");
+        inventory.text(results[0].name);
+        $("#productInfo").append(name).append(description).append(price).append(inventory);
+        });
+   
+    </script>
+</body>
+</html>

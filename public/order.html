@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Order Quantity</th>
+            <th>Product Name</th>
+            <th>Customer Name</th>
+            <th>Customer Email</th>
+        </tr>
+
+    </table>
+    <script>
+        $.ajax({
+            method: "GET",
+            url: "/api/orders"
+        }).then(results => {
+            results.forEach(order =>{
+                let trTag = $("<tr>");
+                let orderQty = $("<td>");
+                    orderQty.text(order.qty);
+                let productName =$("<td>");
+                productName.text(order.product.name);
+                let customerName = $("<td>");
+                customerName.text(order.customer.fname);
+                let email = $("<td>");
+                email.text(order.customer.email);
+                trTag.append(orderQty).append(productName).append(customerName).append(email);
+                $("#orderTable").append(trTag);    
+            })
+        });
+                
+      
+
+
+
+    </script>
+</body>
+</html>
